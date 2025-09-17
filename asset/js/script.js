@@ -11,7 +11,7 @@ let resultat = document.querySelector("#resultat");
 
 bouttonCalcul.addEventListener("click", () => {
     
-        if(nomProduit.value || quantite.value, prixHt.value === ""){
+    if(nomProduit.value || quantite.value, prixHt.value === ""){
         console.log("ok");
         resultat.innerText = "champs à remplir";
         return;
