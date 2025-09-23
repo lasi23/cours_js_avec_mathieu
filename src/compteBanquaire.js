@@ -25,7 +25,7 @@ export default class CompteBanquaire{
         }else{
             beneficiaire.solde += montantVirement;
             this.solde -= montantVirement;
-            console.log(`après le virement à ${beneficiaire.nom} d'un montant de ${montantVirement} votre solde est de ${this.solde}`)
+            console.log(`${this.nom} à fait un  virement à ${beneficiaire.nom} d'un montant de ${montantVirement} votre solde est de ${this.solde}`)
             
         }
     }

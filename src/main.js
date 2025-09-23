@@ -1,9 +1,11 @@
 import './style.css'
 import CompteBanquaire from './compteBanquaire';
 
-const alex = new CompteBanquaire("alex", 0);
-const marco = new CompteBanquaire("Marco", 0);
-const clovis = new CompteBanquaire("clovis", 0);
+let alex = new CompteBanquaire("alex", 0);
+let marco = new CompteBanquaire("Marco", 0);
+let clovis = new CompteBanquaire("clovis", 0);
+
+const listeClients = [alex, marco, clovis];
 
 alex.credit(1000);
 marco.credit(1000);
