@@ -1,1 +1,1 @@
-import Employee from './employer'
+import Employer from './employer'
