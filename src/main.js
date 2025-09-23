@@ -51,6 +51,7 @@ create.addEventListener("click", ()=> {
 
 // --------------------------CREDITER UN COMPTE--------------
 
+
 const compte = document.getElementById("compte");
 const montant = document.getElementById("montant");
 
@@ -62,7 +63,8 @@ crediter.addEventListener("click", ()=> {
   for(let i = 0; i < compteTab.length; i++){
     if(compte.value == compteTab[i].nom){
       console.log("nom de compte ok");
-      compteTab[i].solde += CompteBanquaire.crediter;
+      compteTab[i].credit(Number(montant.value));
+      console.log(montant.value);
     }
   }
 })
