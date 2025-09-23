@@ -4,6 +4,7 @@ class habitation {
         this.longeur = longeur;
         this.nbrEtage = nbrEtage;
     }
+    // methode
     superficie(){
         return this.largeur * this.longeur * this.nbrEtage;
     }
