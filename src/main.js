@@ -34,17 +34,22 @@ const create = document.getElementById("btn_create");
 
 const nomCompte = document.getElementById("nom");
 
+const message = document.querySelector("#message");
+
 
 let compteTab = [];
 
 create.addEventListener("click", ()=> {
   const enregistreNomCompte = nomCompte.value;
-  if(nomCompte.value !== ""){
-    console.log("boutton créer ok");
+  try{
+    if(nomCompte.value === ""){
+      throw new Error("Veuillez remplir le champ")
+    }
     compteTab.push(new CompteBanquaire(enregistreNomCompte));
     console.log(compteTab);
-  }else{
-    alert("Champ à remplir");
+  }catch (error){
+    message.value = error.message;
+    console.log(message.textContent);
   }
 });
 
@@ -63,8 +68,7 @@ crediter.addEventListener("click", ()=> {
   for(let i = 0; i < compteTab.length; i++){
     if(compte.value == compteTab[i].nom){
       console.log("nom de compte ok");
-      compteTab[i].credit(Number(montant.value));
-      console.log(montant.value);
+      compteTab[i].solde += CompteBanquaire.crediter;
     }
   }
 })
