@@ -1,6 +1,9 @@
 import './style.css'
 import CompteBanquaire from './compteBanquaire.js';
 
+
+
+
 // let alex = new CompteBanquaire("alex", 0);
 // let marco = new CompteBanquaire("Marco", 0);
 // let clovis = new CompteBanquaire("clovis", 0);
@@ -92,4 +95,9 @@ const cible = document.getElementById("cible");
 const montantVirement = document.getElementById("montant_virement");
 
 const virement = document.getElementById("virement");
+
+
+virement.addEventListener("click", ()=> {
+  
+})
 
