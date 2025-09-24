@@ -34,17 +34,22 @@ const create = document.getElementById("btn_create");
 
 const nomCompte = document.getElementById("nom");
 
+const message = document.querySelector("#message");
+
 
 let compteTab = [];
 
 create.addEventListener("click", ()=> {
   const enregistreNomCompte = nomCompte.value;
-  if(nomCompte.value !== ""){
-    console.log("boutton créer ok");
+  try{
+    if(nomCompte.value === ""){
+      throw new Error("Veuillez remplir le champ")
+    }
     compteTab.push(new CompteBanquaire(enregistreNomCompte));
     console.log(compteTab);
-  }else{
-    alert("Champ à remplir");
+  }catch (error){
+    message.value = error.message;
+    console.log(message.textContent);
   }
 });
 
@@ -66,8 +71,8 @@ crediter.addEventListener("click", ()=> {
       console.log(compteTab[i]);
       console.log(montant.value);
     }
-    return
   }
+  return
 })
 
 // ------------------------------RETIRER-----------------------
@@ -92,4 +97,18 @@ const cible = document.getElementById("cible");
 const montantVirement = document.getElementById("montant_virement");
 
 const virement = document.getElementById("virement");
+
+
+virement.addEventListener("click", () => {
+  console.log("j'adore js quand sa marche");
+  const compteSource = compteTab.find(c => c.nom === source.value);
+  const compteCible = compteTab.find(c => c.nom === cible.value);
+
+    if(compteSource && compteCible){
+      console.log("les deux compte sont ok")
+      compteCible.solde += Number(montantVirement.value);
+      compteSource.solde -= Number(montantVirement.value);
+      console.log(compteTab);
+    }
+})
 
