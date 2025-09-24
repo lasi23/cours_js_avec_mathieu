@@ -1,6 +1,6 @@
 export default class CompteBanquaire{
     
-    constructor (titulaire, solde){
+    constructor (titulaire, solde = 0){
         this.nom = titulaire;
         this.solde = solde;
     }

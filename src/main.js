@@ -62,8 +62,34 @@ crediter.addEventListener("click", ()=> {
   for(let i = 0; i < compteTab.length; i++){
     if(compte.value == compteTab[i].nom){
       console.log("nom de compte ok");
-      compteTab[i].solde += CompteBanquaire.crediter;
+      compteTab[i].solde += Number(montant.value);
+      console.log(compteTab[i]);
+      console.log(montant.value);
+    }
+    return
+  }
+})
+
+// ------------------------------RETIRER-----------------------
+
+retirer.addEventListener("click", ()=> {
+  console.log("click retirer ok")
+  for(let i = 0; i < compteTab.length; i++){
+    if(compte.value == compteTab[i].nom){
+      compteTab[i].solde -= Number(montant.value);
+      console.log(compteTab[i]);
+      console.log(montant.value);
     }
   }
 })
+
+
+// ----------------------VIREMENT---------------------
+
+const source = document.getElementById("source");
+const cible = document.getElementById("cible");
+
+const montantVirement = document.getElementById("montant_virement");
+
+const virement = document.getElementById("virement");
 
