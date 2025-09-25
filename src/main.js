@@ -12,3 +12,7 @@ const meteo = fetch("https://api.openweathermap.org/data/2.5/weather?lon=1.44&la
 });
 
 console.log(meteo);
+
+apiMeteo().then(json => {
+  console.log(json);
+})
