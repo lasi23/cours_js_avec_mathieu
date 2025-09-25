@@ -16,16 +16,18 @@ const compteTab = [];
 create.addEventListener("click", ()=> {
 try{
     if(nomCompte.value === ""){
-        throw new Error("Veuillez remplir le champ")
+        throw new Error("Veuillez remplir le champ");
     }
     if(tools.isCompteBancaireExist(compteTab, nomCompte.value)){
         throw new Error(`Le compte ${nomCompte.value} existe déjà`)
     }
         compteTab.push(new CompteBanquaire(nomCompte.value));
         console.log(compteTab);
-        message.value = `le compre ${nomCompte.value} à bien été ajouté`;
+        message.textContent = `le compte ${nomCompte.value} à bien été ajouté`;
+        tools.messageColorValid(message);
     }catch (error){
-    message.value = error.message;
+    message.textContent = error.message;
+    tools.messageColorError(message);
     }
     tools.resetMessage(message);
     tools.clearInput();
@@ -43,31 +45,37 @@ const crediter = document.getElementById("crediter");
 const retirer = document.getElementById("retirer");
 
 crediter.addEventListener("click", ()=> {
-    console.log("click crediter ok")
-    for(let i = 0; i < compteTab.length; i++){
-        if(compte.value == compteTab[i].nom){
-        console.log("nom de compte ok");
-
-        compteTab[i].credit(Number(montant.value));
-
-        compteTab[i].solde += Number(montant.value);
-        console.log(compteTab[i]);
-        console.log(montant.value);
+    try {
+        if(montant.value == "" || compte.value == ""){
+            throw new Error(`Veuillez remplir tous les champs`)
         }
+        if(isNaN(montant.value)){
+            throw new Error("La valeur à créditer n'est pas une valeur numérique");
+        }
+
+        if(!tools.trouverCompteParNom(compteTab, compte)){
+            throw new Error(`Le compte ${compte.value} n'existe pas`)
+        }      
+            
+        const compte = tools.trouverCompteParNom(compte, compteOperation.value);
+        compte.credit(parseFloat(montantOperation.value));
+        message.innerText = `Le compte : ${compteOperation.value} à été crédité de : ${montantOperation.value} €, 
+        ${compte.afficherCompte()}`;
+        tools.messageColorValid(message);
+        
+    }catch(error){
+        message.textContent = error.message;
+        tools.messageColorError(message);
     }
-    return
 })
 
 // ------------------------------RETIRER-----------------------
 
 retirer.addEventListener("click", ()=> {
-    console.log("click retirer ok")
     for(let i = 0; i < compteTab.length; i++){
     if(compte.value == compteTab[i].nom){
-        compteTab[i].solde -= Number(montant.value);
-        console.log(compteTab[i]);
 
-        console.log(montant.value);
+        compteTab[i].solde -= Number(montant.value);
         }
     }
 })

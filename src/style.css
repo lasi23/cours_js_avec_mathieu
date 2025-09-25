@@ -56,3 +56,11 @@ button:focus-visible {
 input{
   width: 500px;
 }
+
+.valid {
+  color: green;
+}
+
+.error {
+  color: red;
+}
